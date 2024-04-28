@@ -1,0 +1,275 @@
+*{
+    box-sizing: border-box;
+    
+}
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: auto;
+    margin-right: 20%;
+    margin-left: 20%;
+    min-width: 401px;
+}
+ /*/HEADER/*/
+
+header{
+    background: #545478;
+    color: white;
+    height: 100px;
+}
+header h1{
+    font-size: 30px;
+    text-align: left;
+    margin-top: -60px;
+    margin-left: 120px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+ /*/NAV/*/
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background: #282840;  
+    font-size: 24px;
+    border: 2px solid white;
+}
+
+nav a{
+    text-align: center;
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    border: 2px solid white;
+}
+nav a:hover{
+    border: 4px solid white;
+    background: #3c3c54; 
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+ 
+ /*/SECTION/*/
+ .sobreNosotros{
+    color: white;
+ }
+form{
+    width: 450px;
+    background: white;
+    border-radius: 3%;
+    float: right;
+    text-align: justify;
+    margin-top: -450px;
+    color: black;
+    margin: auto;
+}
+.input{
+    padding-left: 10px;
+    padding-bottom: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+section{
+    flex: 100%;
+    background: #6f6f7c;
+    padding: 20px;
+    height: 1000px;
+}
+#titulo-seccion{
+    text-align: justify;
+    font-size: 25px;
+    color: white;
+}
+section h2{
+     color: white;
+}
+
+section img{
+    margin-top: 40px;
+}
+.logo-brand{
+font-weight: bold;
+text-align: justify;
+background-color:  #545478;
+border-radius: 5px;
+}
+#brand-content{
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+   /*/FOOTER/*/  
+   footer img{
+    margin: 10px;
+   }
+#piePagina{
+    flex: 100%;
+    text-align: center;
+    padding: 20px;
+    background: #282840;  
+    margin-top: 10px;
+    height: 130px;
+}
+#footer-texto{
+    color: white;
+    font-size: 15px;
+}
+
+ul{
+    background: #282840;  
+    font-size: 10px;
+    color: white;
+}
+a{
+    text-decoration: none;
+}
+ul a{
+    text-align: center;
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+ul a:hover{
+    color: rgb(67, 62, 62);
+}
+@media screen and (max-width: 1500px) {
+    body{
+        margin: auto;
+    }
+   header h1{
+    margin-top: -80px;
+   }
+    nav{
+        flex-direction: column;
+        margin-right: 0px;
+    }
+    form{
+        margin-top: 100px;
+        margin-right: 0;
+    }
+    
+     /*/SECTION/*/
+    section{
+        height: 1500px;
+    }
+
+}
+
+@media screen and (min-width: 817px) {
+    form{
+        margin-top: -450px;
+    }
+}
+.contacto-targeta{
+      
+    color: white;
+    margin-top: 100px;
+    margin-left: 60px;
+}
+
+/* Estilos generales para la cuadrícula de productos */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+    margin-top: 40px;
+  }
+  .products-destacados-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+    margin-top: -160px;
+  }
+  
+    @media screen and (max-width: 1500px) {
+        .content{
+        margin-top: 90px;
+    }
+    .products-destacados-grid{
+       margin-top: -60px;
+    }
+}
+
+@media screen and (min-width: 817px) {
+
+    .content{
+        margin-top: 90px;
+    }
+}
+  
+  /* Estilos para cada producto individual */
+  .product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+  }
+  
+  /* Estilos para la imagen de cada producto */
+  .product img {
+    max-width: 210px;
+    max-height: 210px;
+  }
+  
+  /* Estilos para el título de cada producto */
+  .product h3 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Estilos para el precio de cada producto */
+  .product-price {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  /* Estilos para la disponibilidad de cada producto */
+  .product-stock {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Estilos para el botón "Agregar al carrito" */
+  .add-to-cart {
+    padding: 10px 20px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .add-to-cart:hover {
+    background-color: #666;
+  }
+
+  .botonLogin {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    width: 50px;
+    height: 50px;
+    background-color: #282840;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .botonLogin img{
+  max-width: 60%;
+  max-height: 60%;}
