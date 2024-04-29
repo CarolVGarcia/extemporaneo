@@ -1,3 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Arial Black", sans-serif;
+    background-color: #f8f9fa; /* Fondo blanco para una sensación de amplitud */
+}
+
 .container {
     color: white;
     text-align: center;
@@ -13,38 +22,32 @@
     padding: 20px 40px;
     font-size: 24px;
     text-decoration: none;
-    background-color: #2828409a;
+    background-color: #b8c0e0; /* Azul pastel */
     color: #fff;
     border-radius: 5px;
     margin-right: 10px;
 }
 
 .btn:hover {
-    background-color:#282840;
-}
-
-body{
-    font-family: "Arial Black", sans-serif;
-    background-color: #6f6f7c;
+    background-color: #9a8cb8; /* Morado pastel */
 }
 
 .volver-inicio {
     position: fixed;
     top: 20px;
     left: 20px;
-  }
+}
   
-  .btn-volver {
+.btn-volver {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
     text-decoration: none;
-    background-color: #545478;
+    background-color: #545478; /* Morado oscuro */
     color: #fff;
     border-radius: 5px;
-  }
+}
   
-  .btn-volver:hover {
-    background-color: #3a3a5e;
-  }
-  
+.btn-volver:hover {
+    background-color: #3a3a5e; /* Morado más oscuro */
+}

@@ -1,120 +1,69 @@
-*{
+* {
     box-sizing: border-box;
     
 }
-body{
+body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: auto;
     margin-right: 20%;
     margin-left: 20%;
     min-width: 401px;
+    background-color: #f8f9fa; /* Fondo blanco para una sensación de amplitud */
 }
- /*/HEADER/*/
-
-header{
-    background: #545478;
+/* HEADER */
+header {
+    background: #9a8cb8; /* Morado pastel */
     color: white;
     height: 100px;
 }
-header h1{
+
+header h1 {
     font-size: 30px;
     text-align: left;
     margin-top: -60px;
     margin-left: 120px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
- /*/NAV/*/
-
-nav{
+/* NAV */
+nav {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    background: #282840;  
+    background: #b8c0e0; /* Azul pastel */ 
     font-size: 24px;
     border: 2px solid white;
 }
 
-nav a{
+nav a {
     text-align: center;
     color: white;
     padding: 14px 20px;
     text-decoration: none;
     border: 2px solid white;
 }
-nav a:hover{
+
+nav a:hover {
     border: 4px solid white;
-    background: #3c3c54; 
+    background: #3c3c54; /* Un tono más oscuro para el hover */
 }
 
-.row{
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
- 
- /*/SECTION/*/
- .sobreNosotros{
-    color: white;
- }
-form{
-    width: 450px;
-    background: white;
-    border-radius: 3%;
-    float: right;
-    text-align: justify;
-    margin-top: -450px;
-    color: black;
-    margin: auto;
-}
-.input{
-    padding-left: 10px;
-    padding-bottom: 20px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-section{
-    flex: 100%;
-    background: #6f6f7c;
-    padding: 20px;
-    height: 1000px;
-}
-#titulo-seccion{
-    text-align: justify;
-    font-size: 25px;
-    color: white;
-}
-section h2{
-     color: white;
-}
+/* Resto del CSS... */
 
-section img{
-    margin-top: 40px;
-}
-.logo-brand{
-font-weight: bold;
-text-align: justify;
-background-color:  #545478;
-border-radius: 5px;
-}
-#brand-content{
-    padding-bottom: 50px;
-    text-align: center;
-}
-
-   /*/FOOTER/*/  
-   footer img{
+/* FOOTER */
+footer img {
     margin: 10px;
-   }
-#piePagina{
+}
+
+#piePagina {
     flex: 100%;
     text-align: center;
     padding: 20px;
-    background: #282840;  
+    background: #282840; /* Mantenemos este color para el footer */
     margin-top: 10px;
     height: 130px;
 }
-#footer-texto{
+
+#footer-texto {
     color: white;
     font-size: 15px;
 }

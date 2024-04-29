@@ -6,58 +6,66 @@
 <script type="module" src="/JS/productos.js"></script>
 <link rel="stylesheet" href="/CSS/admin.css">
 <body>
-  <h1>Agregar Productos</h1>
-  
-  <form id="formularioProductos">
-    <label for="txtCodigo">CODIGO PRODUCTO:</label>
-    <input type="text" id="txtCodigo" name="txtCodigo">
+  <center>
+    <h1>Agregar Productos</h1>
+    <div class="contenedor-principal">
+      <div class="contenedor-formulario">
     
-    <label for="txtNombre">Nombre PRODUCTO:</label>
-    <input type="text" id="txtNombre" name="txtNombre">
-    
-    <label for="txtPrecio">Precio Producto:</label>
-    <input type="text" id="txtPrecio" name="txtPrecio">
-    
-    <label for="txtCantidad">Cantidad Producto:</label>
-    <input type="text" id="txtCantidad" name="txtCantidad">
-    
-    <label for="txtUrl">URL Imagen Producto:</label>
-    <input readonly type="text" id="txtUrl" name="txtUrl">
-    
-    <input class="subirArchivo" type="file" id="imageInput">
-    <button id="uploadButton">Subir Imagen</button>
-    <div id="progress"></div>
-
-
-    
-    <p id="mensaje" style="text-align: center; color: white;"></p>
-
-    <button type="button" id="btnAgregar">Agregar</button>
-    <button type="button" id="btnBuscar">Buscar</button>
-    <button type="button" id="btnActualizar">Actualizar</button>
-    <button type="button" id="btnBorrar">Borrar</button>
-    <button type="reset">Limpiar formulario</button>
-  </form>
-
-  <table id="tablaProductos">
-    <thead>
-      <tr>
-        <th>Codigo</th>
-        <th>Nombre</th>
-        <th>Precio</th>
-        <th>Cantidad</th>
-        <th>Imagen</th>
-      </tr>
-    </thead>
-    <tbody>
+        <form id="formularioProductos">
+          <label for="txtCodigo">CODIGO PRODUCTO:</label>
+          <input type="text" id="txtCodigo" name="txtCodigo">
+          
+          <label for="txtNombre">Nombre PRODUCTO:</label>
+          <input type="text" id="txtNombre" name="txtNombre">
+          
+          <label for="txtPrecio">Precio Producto:</label>
+          <input type="text" id="txtPrecio" name="txtPrecio">
+          
+          <label for="txtCantidad">Cantidad Producto:</label>
+          <input type="text" id="txtCantidad" name="txtCantidad">
+          
+          <label for="txtUrl">URL Imagen Producto:</label>
+          <input readonly type="text" id="txtUrl" name="txtUrl">
+          
+          <input class="subirArchivo" type="file" id="imageInput">
+          <button id="uploadButton">Subir Imagen</button>
+          <div id="progress"></div>
       
-    </tbody>
-
-  </table>
-
-  <div class="volver-inicio">
-    <a href="/index.html" class="btn-volver">Volver a Inicio</a>
-  </div>
+      
+          
+          <p id="mensaje" style="text-align: center; color: white;"></p>
+      
+          <button type="button" id="btnAgregar">Agregar</button>
+          <button type="button" id="btnBuscar">Buscar</button>
+          <button type="button" id="btnActualizar">Actualizar</button>
+          <button type="button" id="btnBorrar">Borrar</button>
+          <button type="reset">Limpiar formulario</button>
+        </form>
+      </div>
+  
+      <div class="contenedor-tabla">
+      
+        <table id="tablaProductos">
+          <thead>
+            <tr>
+              <th>Codigo</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Imagen</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+      
+        </table>
+      </div>
+      <div class="volver-inicio">
+        <a href="/index.html" class="btn-volver">Volver a Inicio</a>
+      </div>
+    </div>
+  </center>
   
 </body>
 </html>
