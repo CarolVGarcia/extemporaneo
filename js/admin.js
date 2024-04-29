@@ -19,50 +19,70 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-window.addEventListener('DOMContentLoaded', (event) => {
-    mostrarProductosHTML();
-  });
+const productosRef = ref(database, 'Producto');
 
-  function mostrarProductosHTML() {
-    const dbRef = ref(db, 'productos');
-    const section = document.querySelector('.products-grid');
+// Obtiene la referencia al contenedor donde se agregarán las tarjetas
+const tarjetasContainer = document.querySelector('#tarjetas-container');
+
+// ...
+
+// Observador para detectar cambios en la base de datos
+onValue(productosRef, (snapshot) => {
+    // Limpia el contenedor antes de agregar nuevas tarjetas
+    tarjetasContainer.innerHTML = '';
   
-    onValue(dbRef, (snapshot) => {
-      section.innerHTML = ''; // Limpiar contenido anterior
+    // Obtiene los datos de la base de datos
+    const data = snapshot.val();
   
-      snapshot.forEach((childSnapshot) => {
-        const childKey = childSnapshot.key;
-        const data = childSnapshot.val();
+    // Verifica si hay datos
+    if (data) {
+      // Itera sobre cada producto en la base de datos
+      Object.keys(data).forEach((productoKey) => {
+        const producto = data[productoKey];
   
-        const productDiv = document.createElement('div');
-        productDiv.className = 'product';
+        // Crea una nueva tarjeta para cada producto
+        const cardElement = document.createElement('div');
+        cardElement.classList.add('card');
+        cardElement.style.width = '18rem';
   
-        const productImage = document.createElement('img');
-        productImage.src = data.urlImg;
-        productImage.alt = '';
-        productDiv.appendChild(productImage);
+        cardElement.innerHTML = `
+          <img src="${producto.Imagen}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">${producto.Nombre}</h5>
+            <p class="card-text">${producto.Descripcion}</p>
+            <a href="#" class="btn btn-primary">Más Información</a>
+            <a href="#" class="btn btn-primary logged-in eliminar-btn" data-producto-key="${productoKey}">Eliminar</a>
+          </div>
+        `;
   
-        const productTitle = document.createElement('h3');
-        productTitle.className = 'product-title';
-        productTitle.textContent = data.nombre;
-        productDiv.appendChild(productTitle);
-  
-        const productPrice = document.createElement('p');
-        productPrice.className = 'product-price';
-        productPrice.textContent = `$${data.precio}`;
-        productDiv.appendChild(productPrice);
-  
-        const productStock = document.createElement('p');
-        productStock.className = 'product-stock';
-        productStock.textContent = `Disponible: ${data.cantidad} unidades`;
-        productDiv.appendChild(productStock);
-  
-        const addToCartBtn = document.createElement('button');
-        addToCartBtn.className = 'add-to-cart';
-        addToCartBtn.textContent = 'Agregar al carrito';
-        productDiv.appendChild(addToCartBtn);
-  
-        section.appendChild(productDiv);
+        // Agrega la tarjeta al contenedor
+        tarjetasContainer.appendChild(cardElement);
       });
-    }, { onlyOnce: true });
-  }
+    }
+  
+    // Agrega un evento de clic a los botones "Eliminar"
+    document.querySelectorAll('.eliminar-btn').forEach((btn) => {
+      btn.addEventListener('click', function () {
+        const productoKey = this.dataset.productoKey;
+        eliminarProducto(productoKey);
+      });
+    });
+  });
+  
+  function eliminarProducto(productoKey) {
+    if (confirm('¿Seguro que deseas eliminar este producto?')) {
+        // Obtén la referencia específica del producto
+        const productoRef = ref(database, `Producto/${productoKey}`);
+    
+        // Elimina el producto de la base de datos
+        set(productoRef, null)
+            .then(() => {
+                console.log('Producto eliminado correctamente');
+            })
+            .catch((error) => {
+                console.error('Error al eliminar el producto: ', error);
+            });
+    }
+}
+
+
