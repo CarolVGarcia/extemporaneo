@@ -1,16 +1,47 @@
-const loggedOutLinks = document.querySelectorAll('.logged-out')
-const loggedInLinks = document.querySelectorAll('.logged-in')
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js';
+import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js';
+const firebaseConfig = {
+  apiKey: "AIzaSyDQA-rCjEd2CE9z-jnDGXy2GHQJyaNiUeA",
+  authDomain: "ferreteria-cartier.firebaseapp.com",
+  databaseURL: "https://ferreteria-cartier-default-rtdb.firebaseio.com",
+  projectId: "ferreteria-cartier",
+  storageBucket: "ferreteria-cartier.appspot.com",
+  messagingSenderId: "809512707438",
+  appId: "1:809512707438:web:c3e04f5c756dc983f48d7f"
+};
+const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
+/*---------------------------------------------------------*/
+const formulario = document.getElementById("formulario");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const signInButton = document.getElementById("button");
+const errorMensaje = document.getElementById("errorMensaje");
+/*---------------------------------------------------------*/
+formulario.addEventListener("submit", (event) => {
+  event.preventDefault();
 
-console.log(loggedOutLinks);
+  const email = emailInput.value;
+  const password = passwordInput.value;
 
-console.log(loggedInLinks);
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
 
-export const loginCheck = user =>{
-    if(user){
-        loggedOutLinks.forEach(link => link.style.display = 'none')
-        loggedInLinks.forEach(link => link.style.display = 'block')
-    } else {
-        loggedOutLinks.forEach(link => link.style.display = 'block')
-        loggedInLinks.forEach(link => link.style.display = 'none')
-    }
-}
+      window.location.href = "/HTML/opciones.html";
+    })
+    .catch((error) => {
+
+      console.log("Error al iniciar sesión:", error);
+
+      errorMensaje.textContent = "Credenciales incorrectas. Por favor, intenta nuevamente.";
+    });
+});
+
+emailInput.addEventListener("click", () => {
+  errorMensaje.textContent = "";
+});
+
+passwordInput.addEventListener("click", () => {
+  errorMensaje.textContent = "";
+});
+/*---------------------------------------------------------*/
