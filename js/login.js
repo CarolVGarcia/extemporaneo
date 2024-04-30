@@ -27,7 +27,7 @@ formulario.addEventListener("submit", (event) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
 
-      window.location.href = "/HTML/opciones.html";
+      window.location.href = "/html/opcion.html";
     })
     .catch((error) => {
 
