@@ -11,16 +11,14 @@ const firebaseConfig = {
   appId: "1:183115128765:web:7706134d79ebbadc97fcd4"
 };
 
-
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const storage = getStorage(app);
 
-/*--------------------------------------------------- */
 window.addEventListener('DOMContentLoaded', (event) => {
   Listarproductos();
 });
-/*--------------------------------------------------- */
+
 var btnAgregar = document.getElementById('btnAgregar');
 var btnBuscar = document.getElementById('btnBuscar');
 var btnActualizar = document.getElementById('btnActualizar');
@@ -36,8 +34,6 @@ var nombrePro = "";
 var precioPro = "";
 var cantidadPro = "";
 var urlImg = "";
-
-/*--------------------------------------------------- */
 
 uploadButton.addEventListener('click', (event) => {
   event.preventDefault();
@@ -63,7 +59,6 @@ uploadButton.addEventListener('click', (event) => {
     });
   }
 });
-/*--------------------------------------------------- */
 
 function leerInputs() {
   codigo = document.getElementById('txtCodigo').value;
@@ -73,8 +68,6 @@ function leerInputs() {
   urlImg = document.getElementById('txtUrl').value;
 }
 
-/*--------------------------------------------------- */
-
 function mostrarMensaje(mensaje) {
   var mensajeElement = document.getElementById('mensaje');
   mensajeElement.textContent = mensaje;
@@ -83,8 +76,6 @@ function mostrarMensaje(mensaje) {
     mensajeElement.style.display = 'none';
   }, 1000);
 }
-
-/*--------------------------------------------------- */
 
 function insertarProducto() {
   leerInputs();
@@ -106,8 +97,6 @@ function insertarProducto() {
     mostrarMensaje("Ocurrió un error: " + error);
   });
 }
-
-/*--------------------------------------------------- */
 
 function buscarProducto() {
   let codigo = document.getElementById('txtCodigo').value.trim();
@@ -131,16 +120,12 @@ function buscarProducto() {
   });
 }
 
-/*--------------------------------------------------- */
-
 function escribirInputs() {
   document.getElementById('txtNombre').value = nombrePro;
   document.getElementById('txtPrecio').value = precioPro;
   document.getElementById('txtCantidad').value = cantidadPro;
   document.getElementById('txtUrl').value = urlImg;
 }
-
-/*--------------------------------------------------- */
 
 function Listarproductos() {
   const dbRef = refS(db, 'productos');
@@ -183,8 +168,6 @@ function Listarproductos() {
   }, { onlyOnce: true });
 }
 
-/*--------------------------------------------------- */
-
 function actualizarProducto() {
   leerInputs();
   if (codigo === "" || nombrePro === "" || precioPro === "" || cantidadPro === ""| urlImg === "") {
@@ -206,8 +189,6 @@ function actualizarProducto() {
     mostrarMensaje("Ocurrió un error: " + error);
   });
 }
-
-/*--------------------------------------------------- */
 
 function eliminarProducto() {
   let codigo = document.getElementById('txtCodigo').value.trim();
@@ -234,9 +215,6 @@ function eliminarProducto() {
   });
 }
 
-/*--------------------------------------------------- */
-
-
 function limpiarInputs() {
   document.getElementById('txtCodigo').value = '';
   document.getElementById('txtNombre').value = '';
@@ -244,8 +222,6 @@ function limpiarInputs() {
   document.getElementById('txtCantidad').value = '';
   document.getElementById('txtUrl').value = '';
 }
-
-/*--------------------------------------------------- */
 
 function validarNumeros(event) {
   var charCode = event.which ? event.which : event.keyCode;
@@ -258,11 +234,7 @@ document.getElementById('txtCantidad').addEventListener('keypress', validarNumer
 document.getElementById('txtCodigo').addEventListener('keypress', validarNumeros);
 document.getElementById('txtPrecio').addEventListener('keypress', validarNumeros);
 
-/*--------------------------------------------------- */
-
 btnBorrar.addEventListener('click', eliminarProducto);
 btnAgregar.addEventListener('click', insertarProducto);
 btnActualizar.addEventListener('click', actualizarProducto);
 btnBuscar.addEventListener('click', buscarProducto);
-
-

@@ -27,8 +27,14 @@
           <label for="txtUrl">URL Imagen Producto:</label>
           <input readonly type="text" id="txtUrl" name="txtUrl">
           
-          <input class="subirArchivo" type="file" id="imageInput">
-          <button id="uploadButton">Subir Imagen</button>
+          <form id="formularioProductos" enctype="multipart/form-data">
+            <input class="subirArchivo" type="file" id="imageInput">
+            <input type="file" id="imageInput" name="imagen">
+            <button id="uploadButton">Subir Imagen</button>
+          </form>
+          
+          
+          
           <div id="progress"></div>
       
       
