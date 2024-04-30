@@ -25,18 +25,19 @@ function mostrarProductosHTML() {
     const section = document.querySelector('.products-grid');
   
     onValue(dbRef, (snapshot) => {
-      section.innerHTML = ''; // Limpiar contenido anterior
+      section.innerHTML = '';
   
       snapshot.forEach((childSnapshot) => {
         const childKey = childSnapshot.key;
         const data = childSnapshot.val();
+  
   
         const productDiv = document.createElement('div');
         productDiv.className = 'product';
   
         const productImage = document.createElement('img');
         productImage.src = data.urlImg;
-        productImage.alt = '';
+        productImage.alt = data.nombre; // Mejora de accesibilidad
         productDiv.appendChild(productImage);
   
         const productTitle = document.createElement('h3');
@@ -61,5 +62,7 @@ function mostrarProductosHTML() {
   
         section.appendChild(productDiv);
       });
+    }, (error) => {
+      console.error("Error al recuperar los datos:", error);
     }, { onlyOnce: true });
   }

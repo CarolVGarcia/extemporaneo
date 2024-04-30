@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-import { getDatabase, onValue, ref as refS, set, child, get, update, remove } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+
+// Configuración de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDTvukqC2z5Ln7IPrTvMRU49gXdUwq9Gr4",
   authDomain: "proyecto-final-carol-vazquez.firebaseapp.com",
@@ -11,61 +12,36 @@ const firebaseConfig = {
   appId: "1:183115128765:web:7706134d79ebbadc97fcd4"
 };
 
+// Inicialización de Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-const storage = getStorage(app);
+const dbRef = ref(db, 'mi-nodo');
 
+onValue(dbRef, (snapshot) => {
+  const data = snapshot.val();
+  console.log("Valor actualizado:", data);
+});
+
+// Evento DOMContentLoaded
 window.addEventListener('DOMContentLoaded', (event) => {
   Listarproductos();
 });
 
+// Referencias a elementos del DOM
 var btnAgregar = document.getElementById('btnAgregar');
 var btnBuscar = document.getElementById('btnBuscar');
 var btnActualizar = document.getElementById('btnActualizar');
 var btnBorrar = document.getElementById('btnBorrar');
 
-const imageInput = document.getElementById('imageInput');
-const uploadButton = document.getElementById('uploadButton');
-const progressDiv = document.getElementById('progress');
-const txtUrlInput = document.getElementById('txtUrl');
-
-var codigo = 0;
-var nombrePro = "";
-var precioPro = "";
-var cantidadPro = "";
-var urlImg = "";
-
-uploadButton.addEventListener('click', (event) => {
-  event.preventDefault();
-  const file = imageInput.files[0];
-
-  if (file) {
-    const storageRef = ref(storage, file.name);
-    const uploadTask = uploadBytesResumable(storageRef, file);
-    uploadTask.on('state_changed', (snapshot) => {
-      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      progressDiv.textContent = 'Progreso: ' + progress.toFixed(2) + '%';
-    }, (error) => {
-      console.error(error);
-    }, () => {
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        txtUrlInput.value = downloadURL; 
-        setTimeout(() => {
-          progressDiv.textContent = '';
-        }, 500);
-      }).catch((error) => {
-        console.error(error);
-      });
-    });
-  }
-});
-
+// Funciones para manejar los productos
 function leerInputs() {
-  codigo = document.getElementById('txtCodigo').value;
-  nombrePro = document.getElementById('txtNombre').value;
-  precioPro = document.getElementById('txtPrecio').value;
-  cantidadPro = document.getElementById('txtCantidad').value;
-  urlImg = document.getElementById('txtUrl').value;
+  var codigo = document.getElementById('txtCodigo').value;
+  var nombrePro = document.getElementById('txtNombre').value;
+  var precioPro = document.getElementById('txtPrecio').value;
+  var cantidadPro = document.getElementById('txtCantidad').value;
+  var urlImg = document.getElementById('txtUrl').value;
+
+  return { codigo, nombrePro, precioPro, cantidadPro, urlImg };
 }
 
 function mostrarMensaje(mensaje) {
@@ -74,29 +50,30 @@ function mostrarMensaje(mensaje) {
   mensajeElement.style.display = 'block';
   setTimeout(() => {
     mensajeElement.style.display = 'none';
-  }, 1000);
+  }, 3000);
 }
 
-function insertarProducto() {
-  leerInputs();
-  if (codigo === "" || nombrePro === "" || precioPro === "" || cantidadPro === ""| urlImg === "") {
+btnAgregar.addEventListener('click', () => {
+  var { codigo, nombrePro, precioPro, cantidadPro, urlImg } = leerInputs();
+  if (!codigo || !nombrePro || !precioPro || !cantidadPro || !urlImg) {
     mostrarMensaje("Favor de capturar toda la información.");
     return;
   }
-  set(refS(db, 'productos/' + codigo), {
-    codigo:codigo,
+  // Corrección: Cambiar `refS` por `ref` y usar `set` correctamente.
+  set(ref(db, 'productos/' + codigo), {
     nombre: nombrePro,
     precio: precioPro,
     cantidad: cantidadPro,
     urlImg: urlImg
   }).then(() => {
-    mostrarMensaje("Se insertó con éxito.");
+    mostrarMensaje("Producto agregado con éxito.");
     limpiarInputs();
     Listarproductos();
   }).catch((error) => {
-    mostrarMensaje("Ocurrió un error: " + error);
+    // Corrección: Usar `error.message` para mostrar el mensaje de error.
+    mostrarMensaje("Ocurrió un error al agregar el producto: " + error.message);
   });
-}
+});
 
 function buscarProducto() {
   let codigo = document.getElementById('txtCodigo').value.trim();
@@ -169,16 +146,17 @@ function Listarproductos() {
 }
 
 function actualizarProducto() {
-  leerInputs();
-  if (codigo === "" || nombrePro === "" || precioPro === "" || cantidadPro === ""| urlImg === "") {
+  var { codigo, nombrePro, precioPro, cantidadPro, urlImg } = leerInputs();
+  // Corrección: Usar `||` en lugar de `|`.
+  if (!codigo || !nombrePro || !precioPro || !cantidadPro || !urlImg) {
     mostrarMensaje("Favor de capturar toda la información.");
     return;
   }
 
-  update(refS(db, 'productos/' + codigo), {
-    codigo:codigo,
-    precio: precioPro,
+  // Corrección: Cambiar `refS` por `ref` y usar `update` correctamente.
+  update(ref(db, 'productos/' + codigo), {
     nombre: nombrePro,
+    precio: precioPro,
     cantidad: cantidadPro,
     urlImg: urlImg
   }).then(() => {
@@ -186,7 +164,8 @@ function actualizarProducto() {
     limpiarInputs();
     Listarproductos();
   }).catch((error) => {
-    mostrarMensaje("Ocurrió un error: " + error);
+    // Corrección: Usar `error.message` para mostrar el mensaje de error.
+    mostrarMensaje("Ocurrió un error: " + error.message);
   });
 }
 

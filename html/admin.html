@@ -11,6 +11,7 @@
     <div class="contenedor-principal">
       <div class="contenedor-formulario">
     
+        <!-- Se elimina el atributo enctype ya que no se subirán archivos -->
         <form id="formularioProductos">
           <label for="txtCodigo">CODIGO PRODUCTO:</label>
           <input type="text" id="txtCodigo" name="txtCodigo">
@@ -25,20 +26,12 @@
           <input type="text" id="txtCantidad" name="txtCantidad">
           
           <label for="txtUrl">URL Imagen Producto:</label>
-          <input readonly type="text" id="txtUrl" name="txtUrl">
+          <!-- Se quita el atributo readonly para permitir la entrada de texto -->
+          <input type="text" id="txtUrl" name="txtUrl">
           
-          <form id="formularioProductos" enctype="multipart/form-data">
-            <input class="subirArchivo" type="file" id="imageInput">
-            <input type="file" id="imageInput" name="imagen">
-            <button id="uploadButton">Subir Imagen</button>
-          </form>
-          
-          
-          
+          <!-- Se elimina el botón de subir imagen -->
           <div id="progress"></div>
-      
-      
-          
+
           <p id="mensaje" style="text-align: center; color: white;"></p>
       
           <button type="button" id="btnAgregar">Agregar</button>
@@ -50,7 +43,7 @@
       </div>
   
       <div class="contenedor-tabla">
-      
+        
         <table id="tablaProductos">
           <thead>
             <tr>
@@ -62,9 +55,9 @@
             </tr>
           </thead>
           <tbody>
-            
+            <!-- Aquí se mostrarán los productos -->
           </tbody>
-      
+
         </table>
       </div>
       <div class="volver-inicio">
@@ -74,6 +67,6 @@
   </center>
   <script type="module" src="/js/admin.js"></script>
   <script type="module" src="/js/login.js"></script>
-  
+
 </body>
 </html>
