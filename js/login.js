@@ -1,13 +1,13 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js';
 import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js';
 const firebaseConfig = {
-  apiKey: "AIzaSyDQA-rCjEd2CE9z-jnDGXy2GHQJyaNiUeA",
-  authDomain: "ferreteria-cartier.firebaseapp.com",
-  databaseURL: "https://ferreteria-cartier-default-rtdb.firebaseio.com",
-  projectId: "ferreteria-cartier",
-  storageBucket: "ferreteria-cartier.appspot.com",
-  messagingSenderId: "809512707438",
-  appId: "1:809512707438:web:c3e04f5c756dc983f48d7f"
+  apiKey: "AIzaSyDTvukqC2z5Ln7IPrTvMRU49gXdUwq9Gr4",
+  authDomain: "proyecto-final-carol-vazquez.firebaseapp.com",
+  databaseURL: "https://proyecto-final-carol-vazquez-default-rtdb.firebaseio.com",
+  projectId: "proyecto-final-carol-vazquez",
+  storageBucket: "proyecto-final-carol-vazquez.appspot.com",
+  messagingSenderId: "183115128765",
+  appId: "1:183115128765:web:7706134d79ebbadc97fcd4"
 };
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
@@ -44,4 +44,3 @@ emailInput.addEventListener("click", () => {
 passwordInput.addEventListener("click", () => {
   errorMensaje.textContent = "";
 });
-/*---------------------------------------------------------*/
