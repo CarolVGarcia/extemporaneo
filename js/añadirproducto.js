@@ -37,7 +37,7 @@ function mostrarProductosHTML() {
   
         const productImage = document.createElement('img');
         productImage.src = data.urlImg;
-        productImage.alt = data.nombre; // Mejora de accesibilidad
+        productImage.alt = data.nombre; 
         productDiv.appendChild(productImage);
   
         const productTitle = document.createElement('h3');
